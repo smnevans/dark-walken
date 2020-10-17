@@ -1,0 +1,47 @@
+{{ define "main" }}
+<main>
+  <article>
+  <header class="article-header">
+  <h2>{{ .Title }}</h2>
+  </header>
+
+           {{ .Content }}
+
+<footer class="article-footer">
+    <section>
+      <h4 id="date">Published on {{ .Date.Format "Monday, January 2 2006" }} </h4>
+    </section>
+    <section>
+
+    <!-- {{ with .Params.tags }}
+    Tags:
+    <ul class="tags">
+      {{ range . }}
+        <li> <a href="{{ "tags/" | absURL }}{{ . | urlize }}/">{{ . }}</a> </li>
+      {{ end }}
+    </ul>
+    {{ end }}
+  </section> -->
+
+<!-- <section>
+
+    {{ with .Params.categories }}
+
+    Category:
+    <ul class="tags">
+      {{ range . }}
+        <li> <a href="{{ "categories/" | absURL }}{{ . | urlize }}/">{{ . }}</a> </li>
+      {{ end }}
+    </ul>
+    {{ end }}
+  </section> -->
+
+
+
+
+
+
+</footer>
+</article>
+</main>
+{{ end }}

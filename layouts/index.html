@@ -1,0 +1,32 @@
+{{ partial "header.html" . }}
+
+  <main>
+
+    <section id=content>
+
+      <div class="entry-content">
+        {{ .Content }}
+      </div>
+    </section>
+
+    <div class=posts_listing>
+      {{ $paginator := .Paginate (where .Site.RegularPages.ByDate.Reverse "Type" "post") (index .Site.Params "archive-paginate" | default 25) }}
+      {{ range $paginator.Pages  }}
+      <article>
+        <h2 class="article-header"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+
+            <div class="entry-content">
+              {{ .Content }}
+            </div>
+            <div id=date class="article-footer">
+              <time>{{ .Date.Format "Monday, January 2 2006" }}</time>
+          </div>
+      </article>
+      {{ end }}
+    </div>
+
+
+
+  </main>
+
+{{ partial "footer.html" . }}

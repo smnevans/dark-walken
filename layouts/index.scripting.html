@@ -1,0 +1,39 @@
+{{ partial "header.html" . }}
+
+  <main>
+
+    <section id=content>
+
+      <div class="entry-content">
+        {{ .Content }}
+      </div>
+    </section>
+
+
+    <!-- Groups content by month according to the "publishdate" field in front matter -->
+    {{ $paginator := .Paginate (where .Site.RegularPages.ByDate.Reverse "Type" "post") (index .Site.Params "archive-paginate" | default 25) }}
+    {{ range $paginator.Pages.GroupByPublishDate "Monday, January 2 2006" }}
+    <h2>{{ .Key }}</h2>
+    <ul>
+        {{ range .Pages }}
+        <li>
+        <!-- <a href="{{ .Permalink }}">{{ .Title }}</a> -->
+        <div class="entry-content">
+          <span>{{ .Content }} <span class="meta"><a href="{{ .Permalink }}">⚭</a></span></span>
+        </div>
+
+        <!-- <div class="meta">{{ .PublishDate.Format "Mon, Jan 2, 2006" }}</div> -->
+        </li>
+        {{ end }}
+    </ul>
+    {{ end }}
+
+
+
+
+
+
+
+  </main>
+
+{{ partial "footer.html" . }}
